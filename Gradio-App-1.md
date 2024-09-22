@@ -37,7 +37,7 @@
 
 ### Step 3: Create the Local App
 
-Create a file named `app_local.py` with the following code (<font color="red">note:</font>) there are errors in the code that you should fix to make it work:
+Create a file named `app_local.py` with the following code ( **`note:`** there are errors in the code that you should fix to make it work):
 
 ```python
 
