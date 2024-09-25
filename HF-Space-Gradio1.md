@@ -118,3 +118,27 @@ huggingface_hub==0.22.2
 1. Wait for the automatic build process to complete
 2. Your app will be live at the provided Hugging Face Spaces URL https://huggingface.co/spaces/<your_user_name>/<your_space_name>/
 
+### Delete/Pause Your App
+
+**To delete a Hugging Face Space**:
+
+1. Log in to your Hugging Face account and navigate to the Space you want to delete.
+
+2. Click on the "Settings" tab in the upper right corner of the Space's page.
+
+3. Scroll down to the bottom of the Settings page.
+
+4. Look for the "Delete this space" section.
+
+5. In the empty box provided, type in the full name of the Space you want to delete, including your username and the Space name (e.g., "username/space-name").
+
+6. Click on the "I understand, delete this space" button to confirm the deletion.
+
+It's important to note that this action is irreversible and will permanently delete the Space repository and all its files. Make sure you really want to delete the Space before proceeding.
+
+**To stop an app from running and incurring costs, you have the option to pause it instead:**
+
+1. Go to the Space's settings page.
+2. Look for the "Pause Space" option.
+3. Click on it to pause the Space without deleting it.
+ 
