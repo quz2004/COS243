@@ -14,6 +14,7 @@
 Create a file named `app_huggingface.py`:
 
 ```python
+
 import gradio as gr
 from huggingface_hub import InferenceClient
 
@@ -36,6 +37,9 @@ def respond(
     temperature,
     top_p,
 ):
+    if not message:
+        return []
+    
     messages = [{"role": "system", "content": system_message}]
 
     for val in history:
@@ -46,26 +50,34 @@ def respond(
 
     messages.append({"role": "user", "content": message})
 
+    prompt = "\n".join([m["content"] for m in messages])
     response = ""
 
-    for message in client.text_generation(
-        prompt="\n".join([m["content"] for m in messages]),
-        max_new_tokens=max_tokens,
-        stream=True,
-        temperature=temperature,
-        top_p=top_p,
-    ):
-        token = message.token.text
-
-        response += token
-        yield response
+    try:
+        for chunk in client.text_generation(
+            prompt,
+            max_new_tokens=max_tokens,
+            stream=True,
+            temperature=temperature,
+            top_p=top_p,
+        ):
+            if isinstance(chunk, str):
+                response += chunk
+            else:
+                response += chunk.token.text if hasattr(chunk, 'token') else chunk.generated_text
+            yield [(message, response)]
+    except Exception as e:
+        yield [(message, f"An error occurred: {str(e)}")]
 
 def update_textbox(prompt):
-    return gr.Textbox.update(value=prompt)
+    return gr.update(value=prompt)
 
 with gr.Blocks() as demo:
     chatbot = gr.Chatbot()
-    msg = gr.Textbox()
+    msg = gr.Textbox(label="Type your message or select a prompt")
+    with gr.Row():
+        prompt_dropdown = gr.Dropdown(choices=[""] + prompts, label="Select a premade prompt", value="")
+        submit = gr.Button("Submit")
     clear = gr.ClearButton([msg, chatbot])
 
     with gr.Accordion("Advanced options", open=False):
@@ -74,9 +86,9 @@ with gr.Blocks() as demo:
         temperature = gr.Slider(minimum=0.1, maximum=4.0, value=0.7, step=0.1, label="Temperature")
         top_p = gr.Slider(minimum=0.1, maximum=1.0, value=0.95, step=0.05, label="Top-p (nucleus sampling)")
 
-    prompt_dropdown = gr.Dropdown(choices=prompts, label="Select a premade prompt")
     prompt_dropdown.change(update_textbox, inputs=[prompt_dropdown], outputs=[msg])
 
+    submit.click(respond, [msg, chatbot, system, max_tokens, temperature, top_p], chatbot)
     msg.submit(respond, [msg, chatbot, system, max_tokens, temperature, top_p], chatbot)
     clear.click(lambda: None, None, chatbot, queue=False)
 
