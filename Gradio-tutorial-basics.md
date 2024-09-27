@@ -152,7 +152,108 @@ if not api_key:
 demo.launch()
 ```
 
-This interface allows users to upload an image and displays classification probabilities.
+
+Let's explain the code step by step:
+
+### 4.1. Import Required Libraries
+
+```python
+import gradio as gr
+import base64
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+```
+
+This section imports the necessary libraries:
+- `gradio` for creating the user interface
+- `base64` for encoding the image
+- `os` and `dotenv` for handling environment variables
+- `OpenAI` client for interacting with the OpenAI API
+
+### 4.2. Set Up Environment and API Client
+
+```python
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
+model = "gpt-4o-mini"
+base_url = None
+
+client = OpenAI(
+    base_url=base_url,
+    api_key=api_key
+)
+```
+
+Here, we:
+- Load environment variables from a .env file
+- Get the OpenAI API key from the environment variables
+- Set the model name and base URL (if needed)
+- Initialize the OpenAI client
+
+### 4.3. Define the Image Description Function
+
+```python
+def describe_image(image, prompt):
+    # Function implementation...
+```
+
+This function takes an image and a prompt as input and returns a description. It:
+- Checks if the image is a file path or file object
+- Converts the image to base64 encoding
+- Prepares the message for the OpenAI API
+- Calls the API and returns the response
+
+### 4.4. Create the Gradio Interface
+
+```python
+with gr.Blocks() as demo:
+    gr.Markdown(f"# Image Analyzing App using {model}")
+    
+    with gr.Row():
+        image_input = gr.Image(type="filepath", label="Upload an image")
+        prompt_input = gr.Textbox(label="Enter your prompt", 
+            placeholder="Describe this image in detail")
+    
+    output = gr.Textbox(label="Image Description")
+    
+    submit_button = gr.Button("Analyze Image")
+    submit_button.click(fn=describe_image, inputs=[image_input, prompt_input], outputs=output)
+```
+
+This section creates the Gradio interface:
+- Uses `gr.Blocks()` for a flexible layout
+- Adds a title with the model name
+- Creates a row with an image upload component and a text input for the prompt
+- Adds an output text box for the description
+- Creates a submit button that triggers the `describe_image` function
+
+### 4.5. Launch the App
+
+```python
+if not api_key:
+    raise ValueError("API key not found. Please check your .env file.")
+
+demo.launch()
+```
+
+Finally, we:
+- Check if the API key is present
+- Launch the Gradio demo
+
+### Key Points to Note:
+
+1. **Image Handling**: Gradio's `Image` component is set to `type="filepath"`, which means it will provide the file path of the uploaded image to our function.
+
+2. **API Integration**: The app uses OpenAI's API to analyze the image. Make sure you have the necessary API key and permissions.
+
+3. **Base64 Encoding**: The image is converted to base64 encoding to be sent as part of the API request.
+
+4. **Flexible Prompts**: Users can enter custom prompts, allowing for versatile image analysis queries.
+
+5. **Error Handling**: The app checks for the presence of an API key before launching, preventing runtime errors.
+
+This image analysis app demonstrates how to combine Gradio's user interface capabilities with external API services to create powerful and interactive applications. It showcases handling file uploads, text inputs, and integrating with AI services for image analysis.
 
 
 ---
