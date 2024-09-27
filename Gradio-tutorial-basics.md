@@ -151,7 +151,7 @@ if not api_key:
 
 demo.launch()
 ```
-
+**Note:** alternative API: https://app.hyperbolic.xyz/models/qwen2-vl-7b-instruct
 
 Let's explain the code step by step:
 
