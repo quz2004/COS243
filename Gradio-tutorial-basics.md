@@ -151,9 +151,9 @@ if not api_key:
 
 demo.launch()
 ```
-**Note:** alternative API: https://app.hyperbolic.xyz/models/qwen2-vl-7b-instruct
+**Note:** alternative API call: https://app.hyperbolic.xyz/models/qwen2-vl-7b-instruct
 - model= "Qwen/Qwen2-VL-7B-Instruct"
-- base_url = "https://api.hyperbolic.xyz/v1/chat/completions"
+- base_url = "https://api.hyperbolic.xyz/v1/"
 - api_key = os.getenv("HYPERBOLIC_API_KEY")
 
 
