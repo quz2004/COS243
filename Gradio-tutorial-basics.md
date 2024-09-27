@@ -16,7 +16,7 @@ pip install gradio
 
 ## Step 1: Creating a Basic Interface
 
-Let's start with a simple example to understand the basics of Gradio.
+Let's start with a simple example to help you understand the basics of Gradio.
 
 ```python
 import gradio as gr
