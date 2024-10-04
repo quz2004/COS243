@@ -436,7 +436,7 @@ with gr.Blocks() as demo:
         # Color customization components here
 ```
 
-### 5. Add Instructions and About Section
+### 7.5. Add Instructions and About Section
 
 Include helpful information for users:
 
