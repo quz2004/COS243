@@ -195,7 +195,11 @@ Hints for migration:
 1. Add more indicators and countries
 2. Implement data caching
 3. Add comparative analysis between indicators
-4. Create a web interface using Streamlit or Gradio
+4. Create a web interface using Gradio and deploy on HF space
 
 Remember to always check the API documentation and update your dependencies regularly!
  
+## Rubric
+- Migration of code to use deepinfra 60%
+- Completion of any two of the challenge questions 40%
+- Any part of next steps 10% bonus
