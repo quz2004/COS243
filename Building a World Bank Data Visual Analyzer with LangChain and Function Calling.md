@@ -39,7 +39,30 @@ COUNTRIES = {
 }
 ```
 
-## Part 2: Query Parsing with Function Calling
+## Part 2.1 helper function
+
+```python
+
+def encode_plot_to_base64(fig) -> str:
+    """Convert a plotly figure to base64 string."""
+    buffer = BytesIO()
+    fig.write_image(buffer, format='png')
+    buffer.seek(0)
+    return base64.b64encode(buffer.read()).decode()
+
+
+def get_country_data(country_code: str, indicator_dict: Dict[str, str], start_year: int, end_year: int) -> pd.DataFrame:
+    """Get World Bank data for a country and indicator."""
+    date_range = (datetime(start_year, 1, 1), datetime(end_year, 12, 31))
+    data = wbdata.get_dataframe(indicator_dict, country=country_code, 
+                               date=date_range)
+    data = data.reset_index()
+    data['country'] = country_code
+    data['date'] = pd.to_datetime(data['date']).dt.year
+    return data.sort_values('date')
+
+```
+## Part 2.2: Query Parsing with Function Calling
 
 The magic happens in our query parser. Let's break down how function calling works:
 
