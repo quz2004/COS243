@@ -279,12 +279,8 @@ complete_chain = (
 
 ### Visual Flow Diagram
 
-------
-<!--- code-next --->
-```python
-from IPython.display import display, Markdown
+```mermaid
 
-mermaid_code = '''
 graph TD
     A[User Question] --> B[SQL Generator]
     B --> C[Query Execution]
@@ -295,15 +291,8 @@ graph TD
     
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style G fill:#9ff,stroke:#333,stroke-width:2px
-'''
-
-# Display the Mermaid diagram
-display(Markdown(f"""
-```mermaid
-{mermaid_code}
 ```
-"""))
-```
+ 
  
 ### Example with Complete Chain
 
