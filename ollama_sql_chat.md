@@ -304,17 +304,12 @@ display(Markdown(f"""
 ```
 """))
 ```
-
-<!--- code-out#0002 --->
-
-------
-<!--- markdown-next --->
+ 
 ### Example with Complete Chain
 
 Here's a complete example showing the transformation at each step:
 
-------
-<!--- code-next --->
+
 ```python
 
 def demonstrate_chain_steps(question: str):
