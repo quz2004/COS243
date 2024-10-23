@@ -617,7 +617,7 @@ class InputValidator:
     }
     
     # Allowed table names from our database
-    ALLOWED_TABLES = {'players', 'teams', 'salaries'}  # Add your actual table names
+    ALLOWED_TABLES = {'nba_roster'}  # Updated to match actual database table
     
     def __init__(self):
         self.error_messages = []
