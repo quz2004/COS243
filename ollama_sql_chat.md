@@ -15,6 +15,7 @@ This tutorial demonstrates how to build a natural language to SQL query converte
 * 🤖 Conversational memory
 * 🗃️ SQL database integration
  
+* Familiarity with LLMs
 
 ------
 <!--- code-next --->
@@ -435,8 +436,6 @@ sql_memory_chain = RunnablePassthrough.assign(output=sql_chain_with_memory) | sa
 
 ```
 
-<!--- code-out#0004 --->
-
 ------
 <!--- markdown-next --->
 ## Usage Examples
@@ -452,10 +451,6 @@ response = complete_chain.invoke({"question": "What team is Klay Thompson on?"})
 
 
 ```
-
-------
-<!--- markdown-next --->
-
 
 ------
 <!--- markdown-next --->
@@ -476,12 +471,9 @@ result = sql_generator.invoke({"question": "What team is Klay Thompson on?"})
 print("Generated SQL:", result)
 query_result = db.run(result)
 print("Database Result:", query_result)
-
-
-
 ```
 
-<!--- code-out#0005 --->
+<!--- code-out#0004 --->
 
 ------
 <!--- markdown-next --->
@@ -516,7 +508,7 @@ def display_query_result(question, include_sql=False):
 display_query_result("What team is Klay Thompson on?", include_sql=True)
 ```
 
-<!--- code-out#0006 --->
+<!--- code-out#0005 --->
 
 ------
 <!--- markdown-next --->
@@ -549,7 +541,7 @@ display_conversation()
 
 ```
 
-<!--- code-out#0007 --->
+<!--- code-out#0006 --->
 
 ------
 <!--- markdown-next --->
@@ -597,7 +589,7 @@ else:
 
 ```
 
-<!--- code-out#0008 --->
+<!--- code-out#0007 --->
 
 ------
 <!--- markdown-next --->
@@ -697,13 +689,19 @@ We also need to validate the generated SQL before execution:
 ------
 <!--- code-next --->
 ```python
+# Add this method to the QueryValidator class:
+
+
 class QueryValidator:
     """Validate generated SQL queries before execution"""
     
     def __init__(self, db_connection):
         self.db = db_connection
         self.error_messages = []
-        
+    def get_error_messages(self) -> List[str]:
+        """Get all error messages from validation"""
+        return self.error_messages
+
     def validate_sql(self, sql: str) -> bool:
         """
         Validate generated SQL query
@@ -831,7 +829,7 @@ safe_executor = SafeQueryExecutor(db, complete_chain)
 # Example queries
 def test_queries():
     # Valid query
-    result1 = safe_executor.execute_safe_query("What team is Klay Thompson on?")
+    result1 = safe_executor.execute_safe_query("What is salary of Klay Thompson?")
     print("\nValid Query Result:")
     print(result1)
     
@@ -851,7 +849,7 @@ test_queries()
 
 ```
 
-<!--- code-out#0009 --->
+<!--- code-out#0008 --->
 
 ------
 <!--- markdown-next --->
