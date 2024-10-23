@@ -14,11 +14,7 @@ This tutorial demonstrates how to build a natural language to SQL query converte
 * 💬 Natural language interface
 * 🤖 Conversational memory
 * 🗃️ SQL database integration
-
-## Prerequisites
-* Basic Python knowledge
-* Understanding of SQL
-* Familiarity with LLMs
+ 
 
 ------
 <!--- code-next --->
