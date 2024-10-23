@@ -52,7 +52,7 @@ from langchain_community.llms import DeepInfra
 local_model = ChatOllama(model="qwen2.5:14b")
 
 # API setup (optional)
-deepinfra_model = "meta/llama-2-13b-chat"
+deepinfra_model = "meta-llama/Meta-Llama-3.1-70B-Instruct"
 api_model = None ### 
 # https://api.python.langchain.com/en/latest/llms/langchain_community.llms.deepinfra.DeepInfra.html
 
