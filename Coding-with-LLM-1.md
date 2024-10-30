@@ -31,3 +31,46 @@ STA751,Applied Statistics Project or Thesis,6,Dept. Approval,Varies,AMS-MS,IND S
 
 """
 ```
+
+```python
+
+prompt2 = """
+
+Below are a few lines in csv from spreadsheet "FTCM_Course List_Spring2025.xlsx"
+
+rows are like:
+<row>
+Applied Math & Statistics,,Cr,Prereq(s),Instructor <......>
+</row>
+are departments.
+
+rows like 
+<row>
+(Bachelor of Science),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+</row>
+are programs under the departments.
+
+Otherwise rows like 
+<row>
+MAT106,Calculus II,4,MAT105,Michael Zhao,STA-Y1,Lecture,8:30 AM,9:40 AM,,,8:30 AM,9:40 AM,,,8:30 AM,9:30 AM,,,,,D323,Spring2024,,,3:20:00,200,200,,,,,,,
+</row>
+are courses.
+
+one department can have multiple program sections, each program row is followed by course rows.
+
+Please identify patterns and suggest your algorithm in plain language to read xlsx file  by rows and
+1. get column names as list from row 3
+2. extract department name
+3. extract program name
+4. get a list of rows as csv follow that program 
+5. ignore other rows
+
+output a tuple with column name in task 1 as list and a dictionary like:
+{"<department name>" : {
+"program1" :[list of course rows],
+"program2" :[list of course rows]
+}}
+
+"""
+```
+
