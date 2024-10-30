@@ -74,3 +74,21 @@ output a tuple with column name in task 1 as list and a dictionary like:
 """
 ```
 
+```python
+prompt3 = """
+
+Now write complete python code with error logged in a file for debugging purposes if DEBUG mode is on.
+
+Note: 
+0. Since this is manually created file, always expect to have values being mixed case and misspelling etc.
+1. one department can have multiple program sections, each program row is followed by course rows.
+2. department row as "Cr" column with value "Cr" and 
+3. program row has empty column for "Cr"
+4. course row has integer value for "cr"
+5. Use loose pattern to allow "Cr" spelled in different case.
+6. Course code may have special case like "STA421/521", in which case we split into 2 courses, "STA421" and "STA521" and other fields for two courses are the same.
+
+
+
+"""
+```
