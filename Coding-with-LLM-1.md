@@ -212,3 +212,61 @@ Write a python program to process `df` to help diagnose possible inconsistency.
 
 """
 ```
+
+## Use excepty to catch error and detailed traceback info
+
+```python
+import traceback
+import sys
+import linecache
+
+def print_context(filename, line_number, num_back=3):
+    start = max(1, line_number - num_back)
+    for i in range(start, line_number + 1):
+        line = linecache.getline(filename, i).rstrip()
+        print(f"{'>' if i == line_number else ' '} {i:4d} {line}")
+
+def custom_traceback(exc_type, exc_value, tb, limit=3):
+    traceback_lines = []
+    traceback_lines.append("Traceback (most recent call last):\n")
+    
+    while tb and limit > 0:
+        frame = tb.tb_frame
+        filename = frame.f_code.co_filename
+        line_number = tb.tb_lineno
+        function_name = frame.f_code.co_name
+        
+        traceback_lines.append(f"  File \"{filename}\", line {line_number}, in {function_name}\n")
+        traceback_lines.append("    Context:\n")
+        
+        context_lines = []
+        print_context(filename, line_number)
+        
+        tb = tb.tb_next
+        limit -= 1
+    
+    traceback_lines.append(f"{exc_type.__name__}: {exc_value}\n")
+    return "".join(traceback_lines)
+
+def exception_info(e):
+    print(f"Error occurred: {e}")
+    
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+    print(custom_traceback(exc_type, exc_value, exc_traceback, limit=3))
+
+def divide(a, b):
+    return a / b
+
+
+
+def main():
+    divide(4, 0)
+
+
+
+try:
+    main()
+except Exception as e:
+    exception_info(e)
+
+```
