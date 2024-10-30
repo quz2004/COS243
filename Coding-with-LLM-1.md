@@ -202,3 +202,13 @@ if __name__ == "__main__":
 
 
 ```
+
+```python
+prompt3 ="""
+
+Convert the data into pandas dataframe `df`, set all fields as string, add new columns: Department and Program
+We want to clean up the data: identify possible inconsistency in values, missspelling, missing field etc. 
+Write a python program to process `df` to help diagnose possible inconsistency.
+
+"""
+```
