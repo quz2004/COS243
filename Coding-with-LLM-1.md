@@ -213,7 +213,7 @@ Write a python program to process `df` to help diagnose possible inconsistency.
 """
 ```
 
-## Use excepty to catch error and detailed traceback info
+## Use exception to catch error and detailed traceback info
 
 ```python
 import traceback
