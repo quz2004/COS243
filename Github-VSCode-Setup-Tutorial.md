@@ -31,7 +31,7 @@ After creating your repository, you'll be taken to the repository's main page. H
 
 #### For Windows:
 
-1. Download Git from https://git-scm.com/downloads
+1. Download Git from [https://git-scm.com/downloads](https://git-scm.com/downloads)
 2. Run the installer, accepting default options (adjust if needed)
 3. During installation, choose:
    - Default editor (e.g., Notepad++ or VS Code)
@@ -44,7 +44,7 @@ After creating your repository, you'll be taken to the repository's main page. H
 1. Open Terminal and check if Git is installed: `git --version`
 2. If not installed:
    - Option A (recommended): Install Homebrew, then run `brew install git`
-   - Option B: Download installer from https://git-scm.com/download/mac and run it
+   - Option B: Download installer from [https://git-scm.com/download/mac](https://git-scm.com/download/mac) and run it
 
 ### Step 2: Configure Git
 
@@ -105,7 +105,7 @@ e.g. for my repo COS243 I use:
 
 ### Step 7: Set Up Visual Studio Code
 
-1. Install VS Code from https://code.visualstudio.com/
+1. Install VS Code from [https://code.visualstudio.com/](https://code.visualstudio.com/)
 2. Open VS Code and install the "Git" extension if not already installed
 
 ### Step 8: Using Git in VS Code
