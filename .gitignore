@@ -1,0 +1,7 @@
+# Exclude everything
+*_files/
+*.html
+Github-VSCode-Setup-Tutorial_files/
+# Whitelist specific files and directories
+!.gitignore
+!README.md
