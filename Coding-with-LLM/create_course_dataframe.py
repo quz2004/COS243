@@ -4,7 +4,7 @@ import pandas as pd
 import re
 
 # Step 1: Convert to DataFrame
-def create_course_dataframe(column_names, department_program_courses):
+def create_course_dataframe(cleaned_column_names, column_names, department_program_courses):
     data = []
     for department, programs in department_program_courses.items():
         for program, courses in programs.items():
@@ -19,6 +19,12 @@ def create_course_dataframe(column_names, department_program_courses):
     
     # Create DataFrame
     df = pd.DataFrame(data, columns=extended_column_names)
+    # Select columns based on cleaned_column_names
+    df = df[cleaned_column_names]
+
+    # strip trailing spaces from column names
+    df.columns = df.columns.str.strip()
+
     return df
 
 # Step 2: Diagnose Inconsistencies in Data
@@ -70,7 +76,7 @@ def diagnose_inconsistencies(df):
     return df
 
 
-file_path = "FTCM_Course List_Spring2025.xlsx"
+file_path = "COS243/Coding-with-LLM/FTCM_Course List_Spring2025.xlsx"
 result = process_xlsx(file_path)
     
 if result:
@@ -78,7 +84,7 @@ if result:
     print(f"Column Names:{column_names}") 
 else:
     print(f"Error processing file. {file_path}")
-# standardize column names:
+'Instructor', 'Major/ GE/ \nElective', 'Format', 'Mon', 'MonTo',
 cleaned_column_names = ['Course Code', 'Course Title', 'Cr', 'Prereq(s)', 
 'Instructor ', 'Major/ GE/ \nElective', 'Format', 'Mon', 'MonTo',
  'Tue', 'TueTo', 'Wed', 'WedTo', 'Thu', 'ThuTo', 
@@ -86,9 +92,9 @@ cleaned_column_names = ['Course Code', 'Course Title', 'Cr', 'Prereq(s)',
 
 # Sample usage
 # Assuming column_names and department_program_courses are already defined
-df = create_course_dataframe(column_names, department_program_courses)
+df = create_course_dataframe(cleaned_column_names, column_names, department_program_courses)
 df_cleaned = diagnose_inconsistencies(df)
-
+diagnose_inconsistencies(df_cleaned)
 """
 This implementaation has problems, please fix them:
 1. In `create_course_dataframe`  Function signature should be `def create_course_dataframe(cleaned_column_names, column_names, department_program_courses):` and the function should create `df` and then use `cleaned_column_names` to select the columns in the dataframe

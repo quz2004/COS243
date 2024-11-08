@@ -1,6 +1,7 @@
 # Exclude files/dirs
 *_files/
 *.html
+scratch.*
 FTCM_Course List_Spring2025.xlsx
 Github-VSCode-Setup-Tutorial_files/
  .DS_Store
