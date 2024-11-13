@@ -76,7 +76,7 @@ def diagnose_inconsistencies(df):
     return df
 
 
-file_path = "COS243/Coding-with-LLM/FTCM_Course List_Spring2025.xlsx"
+file_path = "./Coding-with-LLM/FTCM_Course List_Spring2025.xlsx"
 result = process_xlsx(file_path)
     
 if result:
@@ -95,6 +95,10 @@ cleaned_column_names = ['Course Code', 'Course Title', 'Cr', 'Prereq(s)',
 df = create_course_dataframe(cleaned_column_names, column_names, department_program_courses)
 df_cleaned = diagnose_inconsistencies(df)
 diagnose_inconsistencies(df_cleaned)
+
+pd.set_option('display.max_columns', None)
+print(df_cleaned.head())
+print(df_cleaned.columns)
 """
 This implementaation has problems, please fix them:
 1. In `create_course_dataframe`  Function signature should be `def create_course_dataframe(cleaned_column_names, column_names, department_program_courses):` and the function should create `df` and then use `cleaned_column_names` to select the columns in the dataframe
