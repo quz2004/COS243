@@ -5,7 +5,7 @@ scratch.*
 .env
 FTCM_Course List_Spring2025.xlsx
 Github-VSCode-Setup-Tutorial_files/
- .DS_Store
+.DS_Store
 # Whitelist specific files and directories
 !.gitignore
 !README.md
