@@ -75,32 +75,32 @@ def diagnose_inconsistencies(df):
     
     return df
 
+if __name__ == "__main__":
+    file_path = "FTCM_Course List_Spring2025.xlsx"
+    result = process_xlsx(file_path)
+        
+    if result:
+        column_names, department_program_courses = result
+        print(f"Column Names:{column_names}") 
+    else:
+        print(f"Error processing file. {file_path}")
+    'Instructor', 'Major/ GE/ \nElective', 'Format', 'Mon', 'MonTo',
+    cleaned_column_names = ['Course Code', 'Course Title', 'Cr', 'Prereq(s)', 
+    'Instructor ', 'Major/ GE/ \nElective', 'Format', 'Mon', 'MonTo',
+    'Tue', 'TueTo', 'Wed', 'WedTo', 'Thu', 'ThuTo', 
+    'Fri', 'FriTo', 'Sat', 'SatTo', 'Platform', 'New/ Repeat', 'Room']
 
-file_path = "./Coding-with-LLM/FTCM_Course List_Spring2025.xlsx"
-result = process_xlsx(file_path)
-    
-if result:
-    column_names, department_program_courses = result
-    print(f"Column Names:{column_names}") 
-else:
-    print(f"Error processing file. {file_path}")
-'Instructor', 'Major/ GE/ \nElective', 'Format', 'Mon', 'MonTo',
-cleaned_column_names = ['Course Code', 'Course Title', 'Cr', 'Prereq(s)', 
-'Instructor ', 'Major/ GE/ \nElective', 'Format', 'Mon', 'MonTo',
- 'Tue', 'TueTo', 'Wed', 'WedTo', 'Thu', 'ThuTo', 
-'Fri', 'FriTo', 'Sat', 'SatTo', 'Platform', 'New/ Repeat', 'Room']
+    # Sample usage
+    # Assuming column_names and department_program_courses are already defined
+    df = create_course_dataframe(cleaned_column_names, column_names, department_program_courses)
+    df_cleaned = diagnose_inconsistencies(df)
+    diagnose_inconsistencies(df_cleaned)
 
-# Sample usage
-# Assuming column_names and department_program_courses are already defined
-df = create_course_dataframe(cleaned_column_names, column_names, department_program_courses)
-df_cleaned = diagnose_inconsistencies(df)
-diagnose_inconsistencies(df_cleaned)
-
-pd.set_option('display.max_columns', None)
-print(df_cleaned.head())
-print(df_cleaned.columns)
-"""
-This implementaation has problems, please fix them:
-1. In `create_course_dataframe`  Function signature should be `def create_course_dataframe(cleaned_column_names, column_names, department_program_courses):` and the function should create `df` and then use `cleaned_column_names` to select the columns in the dataframe
-2. instructor column has a trailing space, it should be removed
-"""
+    pd.set_option('display.max_columns', None)
+    print(df_cleaned.head())
+    print(df_cleaned.columns)
+    """
+    This implementaation has problems, please fix them:
+    1. In `create_course_dataframe`  Function signature should be `def create_course_dataframe(cleaned_column_names, column_names, department_program_courses):` and the function should create `df` and then use `cleaned_column_names` to select the columns in the dataframe
+    2. instructor column has a trailing space, it should be removed
+    """
