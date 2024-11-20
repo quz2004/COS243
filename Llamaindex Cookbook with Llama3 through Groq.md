@@ -97,7 +97,7 @@ Settings.embed_model = embed_model
 
 Here you'll download data that's used in section 2 and onwards.
 
-We'll download some articles on Kendrick, Drake, and their beef (as of May 2024).
+We'll download a book "The Theory never dies"
 
 ------
 <!--- code-next --->
