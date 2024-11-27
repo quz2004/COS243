@@ -3,6 +3,9 @@
 *.html
 scratch.*
 .env
+*.log
+*.ipynb
+*.json
 FTCM_Course List_Spring2025.xlsx
 Github-VSCode-Setup-Tutorial_files/
 .DS_Store
